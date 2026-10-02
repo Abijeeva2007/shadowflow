@@ -1,0 +1,30 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# --- Node / Next.js ---
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# --- Environment / secrets (keep .env.example) ---
+.env
+.env.*
+!.env.example
+
+# --- OS / editor ---
+.DS_Store
+*.log
+
+# --- local generated output (data CSVs + ground_truth.json ARE committed) ---
+backend/data/dossiers/
+backend/data/metrics.json
+
+# --- Freebuff workspace tooling (not part of the project) ---
+.freebuff/
