@@ -1,0 +1,13 @@
+# Runtime dependencies, pinned for reproducible installs (Docker/Render).
+# These are the exact versions the project is developed and tested against on
+# Python 3.11. Test-only tooling lives in requirements-dev.txt.
+fastapi==0.142.2
+uvicorn[standard]==0.54.0
+pandas==3.0.6
+numpy==2.4.6
+networkx==3.6.1
+scikit-learn==1.9.1
+reportlab==5.0.1
+matplotlib==3.11.2
+pydantic==2.13.5
+python-dotenv==1.2.4

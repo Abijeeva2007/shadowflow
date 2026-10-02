@@ -1,0 +1,22 @@
+# Render blueprint for the ShadowFlow backend (FastAPI API).
+# Deploy: New -> Blueprint -> point Render at this repo (render.yaml is at the
+# repo root, as Render requires). Build context is ./backend (Dockerfile there).
+services:
+  - type: web
+    name: shadowflow-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /health
+    # Free instances sleep after inactivity; detection is cached at startup so
+    # the first request after a cold start wakes quickly (see main.py lifespan).
+    autoDeploy: false
+    envVars:
+      # Comma-separated list of allowed dashboard origins, e.g.
+      # "https://your-app.vercel.app,https://your-other-app.vercel.app".
+      # Set this in the Render dashboard (sync: false keeps it out of git).
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: MPLBACKEND
+        value: Agg

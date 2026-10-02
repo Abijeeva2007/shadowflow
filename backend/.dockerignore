@@ -1,0 +1,25 @@
+# Keep the build context small and free of local-only artifacts.
+# Without this, `COPY . .` would bake the 400+ MB local .venv (a duplicate of
+# the deps already installed into /opt/venv in the builder stage) into the image.
+
+# local virtualenv
+.venv/
+venv/
+ENV/
+
+# python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# generated dossier PDFs from local runs
+data/dossiers/
+
+# local env / secrets (render.yaml supplies config via env vars)
+.env
+.env.*
+
+# misc
+*.log
+.DS_Store
