@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  background: #0f1115;
+  color: #e7e9ee;
+  font-size: 13px;
+}
+
+body {
+  font-feature-settings: "tnum" 1; /* tabular numerals everywhere */
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f1115;
+}
+::-webkit-scrollbar-thumb {
+  background: #232934;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2e3742;
+}
+
+input[type="range"] {
+  accent-color: #d29922;
+}
+
+/* ---------------------------------------------------------------- panels */
+.panel {
+  @apply bg-ink-panel border border-ink-border rounded;
+}
+.panel2 {
+  @apply bg-ink-panel2;
+}
+.panel-head {
+  @apply flex items-center gap-2 px-3 h-9 border-b border-ink-border text-xxs uppercase tracking-[0.14em] text-ink-muted;
+}
+
+/* ---------------------------------------------------------------- tables */
+.th {
+  @apply text-left text-xxs uppercase tracking-[0.14em] text-ink-muted font-medium px-3 h-9 border-b border-ink-border select-none whitespace-nowrap;
+}
+.th-sortable {
+  @apply cursor-pointer hover:text-ink-text;
+}
+.td {
+  @apply px-3 h-9 text-xs border-b border-ink-border whitespace-nowrap align-middle;
+}
+.tbody-row:hover {
+  background: #1b2029;
+}
+
+/* ---------------------------------------------------------------- buttons */
+.btn {
+  @apply inline-flex items-center gap-1.5 rounded px-3 h-8 text-xs font-medium transition-colors disabled:opacity-40 disabled:cursor-not-allowed;
+}
+.btn-primary {
+  @apply btn bg-risk-amber text-ink hover:bg-[#e0a933];
+}
+.btn-ghost {
+  @apply btn border border-ink-border text-ink-muted hover:text-ink-text hover:border-ink-faint;
+}
+.btn-active {
+  @apply btn bg-ink-panel2 border border-ink-faint text-ink-text;
+}
+
+/* ---------------------------------------------------------------- bits */
+.badge {
+  @apply inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-xxs uppercase tracking-wider font-semibold;
+}
+.chip {
+  @apply inline-flex items-center gap-1.5 rounded border px-2 py-0.5 text-xxs font-mono;
+}
+.num {
+  @apply font-mono;
+}
+.err-banner {
+  @apply border border-risk-red/60 bg-risk-red/10 text-risk-red rounded px-3 py-2 text-xs;
+}
+.hairline {
+  @apply border-ink-border;
+}
+
+/* skeleton shimmer */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #1b2029;
+  border-radius: 3px;
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 147, 163, 0.07),
+    transparent
+  );
+  animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* range input ticks area */
+.scrub-tick {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 8px;
+  transform: translateX(-1px);
+}
