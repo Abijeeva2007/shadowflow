@@ -1,0 +1,3109 @@
+{
+  "generated_at": "2026-10-03 09:54:33Z",
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "noise_levels": {
+    "low": 0.5,
+    "medium": 1.0,
+    "high": 1.5
+  },
+  "flag_cutoff": 55.0,
+  "neutral_anomaly": 50.0,
+  "n_runs": 30,
+  "elapsed_seconds": 135.1,
+  "failures": [],
+  "runs": [
+    {
+      "seed": 1,
+      "noise": "low",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          },
+          "no_filter": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          },
+          "no_filter": {
+            "precision": 0.667,
+            "recall": 0.8,
+            "f1": 0.727,
+            "tp": 4,
+            "fp": 2,
+            "fn": 1
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 14,
+        "injected_found": 12,
+        "injected_found_no_filter": 12
+      },
+      "n_txns": 37803,
+      "n_suspects": 560,
+      "accounts": {
+        "n_ground_truth": 179,
+        "full": {
+          "precision": 0.955,
+          "recall": 0.117,
+          "f1": 0.209
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 1.1
+    },
+    {
+      "seed": 2,
+      "noise": "low",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 16,
+        "injected_found": 15,
+        "injected_found_no_filter": 15
+      },
+      "n_txns": 37856,
+      "n_suspects": 610,
+      "accounts": {
+        "n_ground_truth": 212,
+        "full": {
+          "precision": 0.966,
+          "recall": 0.132,
+          "f1": 0.232
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 1.2
+    },
+    {
+      "seed": 3,
+      "noise": "low",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          },
+          "no_filter": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 16,
+        "injected_found": 14,
+        "injected_found_no_filter": 14
+      },
+      "n_txns": 35029,
+      "n_suspects": 615,
+      "accounts": {
+        "n_ground_truth": 190,
+        "full": {
+          "precision": 0.935,
+          "recall": 0.153,
+          "f1": 0.262
+        },
+        "no_if": {
+          "precision": 1.0,
+          "recall": 0.011,
+          "f1": 0.021
+        }
+      },
+      "seconds": 1.1
+    },
+    {
+      "seed": 4,
+      "noise": "low",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          },
+          "no_filter": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 14,
+        "injected_found": 13,
+        "injected_found_no_filter": 13
+      },
+      "n_txns": 38010,
+      "n_suspects": 610,
+      "accounts": {
+        "n_ground_truth": 208,
+        "full": {
+          "precision": 0.957,
+          "recall": 0.106,
+          "f1": 0.19
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 1.2
+    },
+    {
+      "seed": 5,
+      "noise": "low",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          },
+          "no_filter": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 3
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 14,
+        "injected_found": 13,
+        "injected_found_no_filter": 13
+      },
+      "n_txns": 37261,
+      "n_suspects": 620,
+      "accounts": {
+        "n_ground_truth": 217,
+        "full": {
+          "precision": 0.958,
+          "recall": 0.106,
+          "f1": 0.191
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 1.2
+    },
+    {
+      "seed": 6,
+      "noise": "low",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          },
+          "no_filter": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 14,
+        "injected_found": 13,
+        "injected_found_no_filter": 13
+      },
+      "n_txns": 36691,
+      "n_suspects": 646,
+      "accounts": {
+        "n_ground_truth": 232,
+        "full": {
+          "precision": 0.955,
+          "recall": 0.091,
+          "f1": 0.165
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 1.2
+    },
+    {
+      "seed": 7,
+      "noise": "low",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          },
+          "no_filter": {
+            "precision": 0.6,
+            "recall": 0.6,
+            "f1": 0.6,
+            "tp": 3,
+            "fp": 2,
+            "fn": 2
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 15,
+        "injected_found": 13,
+        "injected_found_no_filter": 13
+      },
+      "n_txns": 37496,
+      "n_suspects": 584,
+      "accounts": {
+        "n_ground_truth": 202,
+        "full": {
+          "precision": 0.952,
+          "recall": 0.099,
+          "f1": 0.179
+        },
+        "no_if": {
+          "precision": 1.0,
+          "recall": 0.02,
+          "f1": 0.039
+        }
+      },
+      "seconds": 1.2
+    },
+    {
+      "seed": 8,
+      "noise": "low",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.667,
+            "recall": 0.4,
+            "f1": 0.5,
+            "tp": 2,
+            "fp": 1,
+            "fn": 3
+          },
+          "no_filter": {
+            "precision": 0.667,
+            "recall": 0.4,
+            "f1": 0.5,
+            "tp": 2,
+            "fp": 1,
+            "fn": 3
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 13,
+        "injected_found": 12,
+        "injected_found_no_filter": 12
+      },
+      "n_txns": 35417,
+      "n_suspects": 599,
+      "accounts": {
+        "n_ground_truth": 194,
+        "full": {
+          "precision": 0.952,
+          "recall": 0.103,
+          "f1": 0.186
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 1.1
+    },
+    {
+      "seed": 9,
+      "noise": "low",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.667,
+            "recall": 0.4,
+            "f1": 0.5,
+            "tp": 2,
+            "fp": 1,
+            "fn": 3
+          },
+          "no_filter": {
+            "precision": 0.667,
+            "recall": 0.4,
+            "f1": 0.5,
+            "tp": 2,
+            "fp": 1,
+            "fn": 3
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 13,
+        "injected_found": 12,
+        "injected_found_no_filter": 12
+      },
+      "n_txns": 37369,
+      "n_suspects": 597,
+      "accounts": {
+        "n_ground_truth": 203,
+        "full": {
+          "precision": 0.952,
+          "recall": 0.099,
+          "f1": 0.179
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 1.2
+    },
+    {
+      "seed": 10,
+      "noise": "low",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.5,
+            "recall": 0.2,
+            "f1": 0.286,
+            "tp": 1,
+            "fp": 1,
+            "fn": 4
+          },
+          "no_filter": {
+            "precision": 0.5,
+            "recall": 0.2,
+            "f1": 0.286,
+            "tp": 1,
+            "fp": 1,
+            "fn": 4
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 13,
+        "injected_found": 11,
+        "injected_found_no_filter": 11
+      },
+      "n_txns": 34633,
+      "n_suspects": 616,
+      "accounts": {
+        "n_ground_truth": 205,
+        "full": {
+          "precision": 0.882,
+          "recall": 0.073,
+          "f1": 0.135
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 1.1
+    },
+    {
+      "seed": 1,
+      "noise": "medium",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          },
+          "no_filter": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 16,
+        "injected_found": 14,
+        "injected_found_no_filter": 14
+      },
+      "n_txns": 65558,
+      "n_suspects": 425,
+      "accounts": {
+        "n_ground_truth": 190,
+        "full": {
+          "precision": 0.96,
+          "recall": 0.126,
+          "f1": 0.223
+        },
+        "no_if": {
+          "precision": 1.0,
+          "recall": 0.021,
+          "f1": 0.041
+        }
+      },
+      "seconds": 8.8
+    },
+    {
+      "seed": 2,
+      "noise": "medium",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.667,
+            "recall": 0.4,
+            "f1": 0.5,
+            "tp": 2,
+            "fp": 1,
+            "fn": 3
+          },
+          "no_filter": {
+            "precision": 0.667,
+            "recall": 0.4,
+            "f1": 0.5,
+            "tp": 2,
+            "fp": 1,
+            "fn": 3
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 13,
+        "injected_found": 12,
+        "injected_found_no_filter": 12
+      },
+      "n_txns": 65200,
+      "n_suspects": 445,
+      "accounts": {
+        "n_ground_truth": 210,
+        "full": {
+          "precision": 0.933,
+          "recall": 0.067,
+          "f1": 0.124
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 9.1
+    },
+    {
+      "seed": 3,
+      "noise": "medium",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          },
+          "no_filter": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 0.714,
+            "recall": 1.0,
+            "f1": 0.833,
+            "tp": 5,
+            "fp": 2,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 0.625,
+            "recall": 1.0,
+            "f1": 0.769,
+            "tp": 5,
+            "fp": 3,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 17,
+        "injected_found": 14,
+        "injected_found_no_filter": 14
+      },
+      "n_txns": 67493,
+      "n_suspects": 439,
+      "accounts": {
+        "n_ground_truth": 210,
+        "full": {
+          "precision": 0.968,
+          "recall": 0.143,
+          "f1": 0.249
+        },
+        "no_if": {
+          "precision": 1.0,
+          "recall": 0.024,
+          "f1": 0.047
+        }
+      },
+      "seconds": 9.9
+    },
+    {
+      "seed": 4,
+      "noise": "medium",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          },
+          "no_filter": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 0.714,
+            "recall": 1.0,
+            "f1": 0.833,
+            "tp": 5,
+            "fp": 2,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 15,
+        "injected_found": 13,
+        "injected_found_no_filter": 13
+      },
+      "n_txns": 66875,
+      "n_suspects": 407,
+      "accounts": {
+        "n_ground_truth": 181,
+        "full": {
+          "precision": 0.955,
+          "recall": 0.116,
+          "f1": 0.207
+        },
+        "no_if": {
+          "precision": 1.0,
+          "recall": 0.022,
+          "f1": 0.043
+        }
+      },
+      "seconds": 9.9
+    },
+    {
+      "seed": 5,
+      "noise": "medium",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          },
+          "no_filter": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 15,
+        "injected_found": 13,
+        "injected_found_no_filter": 13
+      },
+      "n_txns": 67421,
+      "n_suspects": 416,
+      "accounts": {
+        "n_ground_truth": 192,
+        "full": {
+          "precision": 0.923,
+          "recall": 0.125,
+          "f1": 0.22
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 9.6
+    },
+    {
+      "seed": 6,
+      "noise": "medium",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.667,
+            "recall": 0.4,
+            "f1": 0.5,
+            "tp": 2,
+            "fp": 1,
+            "fn": 3
+          },
+          "no_filter": {
+            "precision": 0.667,
+            "recall": 0.4,
+            "f1": 0.5,
+            "tp": 2,
+            "fp": 1,
+            "fn": 3
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 14,
+        "injected_found": 12,
+        "injected_found_no_filter": 12
+      },
+      "n_txns": 62909,
+      "n_suspects": 410,
+      "accounts": {
+        "n_ground_truth": 166,
+        "full": {
+          "precision": 0.957,
+          "recall": 0.133,
+          "f1": 0.233
+        },
+        "no_if": {
+          "precision": 1.0,
+          "recall": 0.024,
+          "f1": 0.047
+        }
+      },
+      "seconds": 9.1
+    },
+    {
+      "seed": 7,
+      "noise": "medium",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          },
+          "no_filter": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 15,
+        "injected_found": 14,
+        "injected_found_no_filter": 14
+      },
+      "n_txns": 61873,
+      "n_suspects": 436,
+      "accounts": {
+        "n_ground_truth": 190,
+        "full": {
+          "precision": 0.96,
+          "recall": 0.126,
+          "f1": 0.223
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 9.0
+    },
+    {
+      "seed": 8,
+      "noise": "medium",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          },
+          "no_filter": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 1.0,
+            "recall": 0.8,
+            "f1": 0.889,
+            "tp": 4,
+            "fp": 0,
+            "fn": 1
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 0.8,
+            "f1": 0.889,
+            "tp": 4,
+            "fp": 0,
+            "fn": 1
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 14,
+        "injected_found": 13,
+        "injected_found_no_filter": 13
+      },
+      "n_txns": 66725,
+      "n_suspects": 381,
+      "accounts": {
+        "n_ground_truth": 157,
+        "full": {
+          "precision": 0.941,
+          "recall": 0.102,
+          "f1": 0.184
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 9.0
+    },
+    {
+      "seed": 9,
+      "noise": "medium",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          },
+          "no_filter": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 15,
+        "injected_found": 14,
+        "injected_found_no_filter": 14
+      },
+      "n_txns": 69609,
+      "n_suspects": 431,
+      "accounts": {
+        "n_ground_truth": 213,
+        "full": {
+          "precision": 0.95,
+          "recall": 0.089,
+          "f1": 0.163
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 9.5
+    },
+    {
+      "seed": 10,
+      "noise": "medium",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          },
+          "no_filter": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 0.667,
+            "recall": 0.8,
+            "f1": 0.727,
+            "tp": 4,
+            "fp": 2,
+            "fn": 1
+          },
+          "no_filter": {
+            "precision": 0.667,
+            "recall": 0.8,
+            "f1": 0.727,
+            "tp": 4,
+            "fp": 2,
+            "fn": 1
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 16,
+        "injected_found": 13,
+        "injected_found_no_filter": 13
+      },
+      "n_txns": 67502,
+      "n_suspects": 411,
+      "accounts": {
+        "n_ground_truth": 178,
+        "full": {
+          "precision": 0.963,
+          "recall": 0.146,
+          "f1": 0.254
+        },
+        "no_if": {
+          "precision": 1.0,
+          "recall": 0.051,
+          "f1": 0.096
+        }
+      },
+      "seconds": 9.6
+    },
+    {
+      "seed": 1,
+      "noise": "high",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          },
+          "no_filter": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 14,
+        "injected_found": 13,
+        "injected_found_no_filter": 13
+      },
+      "n_txns": 100137,
+      "n_suspects": 416,
+      "accounts": {
+        "n_ground_truth": 213,
+        "full": {
+          "precision": 0.944,
+          "recall": 0.08,
+          "f1": 0.147
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 3.2
+    },
+    {
+      "seed": 2,
+      "noise": "high",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.667,
+            "recall": 0.4,
+            "f1": 0.5,
+            "tp": 2,
+            "fp": 1,
+            "fn": 3
+          },
+          "no_filter": {
+            "precision": 0.667,
+            "recall": 0.4,
+            "f1": 0.5,
+            "tp": 2,
+            "fp": 1,
+            "fn": 3
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 1.0,
+            "recall": 0.8,
+            "f1": 0.889,
+            "tp": 4,
+            "fp": 0,
+            "fn": 1
+          },
+          "no_filter": {
+            "precision": 0.667,
+            "recall": 0.8,
+            "f1": 0.727,
+            "tp": 4,
+            "fp": 2,
+            "fn": 1
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 3
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 12,
+        "injected_found": 11,
+        "injected_found_no_filter": 11
+      },
+      "n_txns": 100882,
+      "n_suspects": 435,
+      "accounts": {
+        "n_ground_truth": 232,
+        "full": {
+          "precision": 0.95,
+          "recall": 0.082,
+          "f1": 0.151
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 3.3
+    },
+    {
+      "seed": 3,
+      "noise": "high",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          },
+          "no_filter": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 15,
+        "injected_found": 14,
+        "injected_found_no_filter": 14
+      },
+      "n_txns": 91510,
+      "n_suspects": 409,
+      "accounts": {
+        "n_ground_truth": 206,
+        "full": {
+          "precision": 0.947,
+          "recall": 0.087,
+          "f1": 0.16
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 2.8
+    },
+    {
+      "seed": 4,
+      "noise": "high",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          },
+          "no_filter": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 15,
+        "injected_found": 14,
+        "injected_found_no_filter": 14
+      },
+      "n_txns": 95654,
+      "n_suspects": 394,
+      "accounts": {
+        "n_ground_truth": 191,
+        "full": {
+          "precision": 0.958,
+          "recall": 0.12,
+          "f1": 0.214
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 2.9
+    },
+    {
+      "seed": 5,
+      "noise": "high",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          },
+          "no_filter": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 1.0,
+            "recall": 0.8,
+            "f1": 0.889,
+            "tp": 4,
+            "fp": 0,
+            "fn": 1
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 0.8,
+            "f1": 0.889,
+            "tp": 4,
+            "fp": 0,
+            "fn": 1
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 13,
+        "injected_found": 12,
+        "injected_found_no_filter": 12
+      },
+      "n_txns": 92723,
+      "n_suspects": 383,
+      "accounts": {
+        "n_ground_truth": 179,
+        "full": {
+          "precision": 0.96,
+          "recall": 0.134,
+          "f1": 0.235
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 2.8
+    },
+    {
+      "seed": 6,
+      "noise": "high",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.5,
+            "recall": 0.2,
+            "f1": 0.286,
+            "tp": 1,
+            "fp": 1,
+            "fn": 4
+          },
+          "no_filter": {
+            "precision": 0.5,
+            "recall": 0.2,
+            "f1": 0.286,
+            "tp": 1,
+            "fp": 1,
+            "fn": 4
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 13,
+        "injected_found": 11,
+        "injected_found_no_filter": 11
+      },
+      "n_txns": 93453,
+      "n_suspects": 452,
+      "accounts": {
+        "n_ground_truth": 249,
+        "full": {
+          "precision": 0.947,
+          "recall": 0.072,
+          "f1": 0.134
+        },
+        "no_if": {
+          "precision": 1.0,
+          "recall": 0.016,
+          "f1": 0.032
+        }
+      },
+      "seconds": 3.0
+    },
+    {
+      "seed": 7,
+      "noise": "high",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          },
+          "no_filter": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 3
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 14,
+        "injected_found": 13,
+        "injected_found_no_filter": 13
+      },
+      "n_txns": 95687,
+      "n_suspects": 383,
+      "accounts": {
+        "n_ground_truth": 179,
+        "full": {
+          "precision": 0.944,
+          "recall": 0.095,
+          "f1": 0.173
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 2.9
+    },
+    {
+      "seed": 8,
+      "noise": "high",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          },
+          "no_filter": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          },
+          "no_filter": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 15,
+        "injected_found": 13,
+        "injected_found_no_filter": 13
+      },
+      "n_txns": 97915,
+      "n_suspects": 388,
+      "accounts": {
+        "n_ground_truth": 185,
+        "full": {
+          "precision": 0.958,
+          "recall": 0.124,
+          "f1": 0.22
+        },
+        "no_if": {
+          "precision": 1.0,
+          "recall": 0.022,
+          "f1": 0.042
+        }
+      },
+      "seconds": 3.0
+    },
+    {
+      "seed": 9,
+      "noise": "high",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          },
+          "no_filter": {
+            "precision": 0.75,
+            "recall": 0.6,
+            "f1": 0.667,
+            "tp": 3,
+            "fp": 1,
+            "fn": 2
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 1.0,
+            "recall": 0.8,
+            "f1": 0.889,
+            "tp": 4,
+            "fp": 0,
+            "fn": 1
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 0.8,
+            "f1": 0.889,
+            "tp": 4,
+            "fp": 0,
+            "fn": 1
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 13,
+        "injected_found": 12,
+        "injected_found_no_filter": 12
+      },
+      "n_txns": 96228,
+      "n_suspects": 420,
+      "accounts": {
+        "n_ground_truth": 217,
+        "full": {
+          "precision": 0.944,
+          "recall": 0.078,
+          "f1": 0.145
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 3.0
+    },
+    {
+      "seed": 10,
+      "noise": "high",
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          },
+          "no_filter": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8,
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 0.833,
+            "recall": 1.0,
+            "f1": 0.909,
+            "tp": 5,
+            "fp": 1,
+            "fn": 0
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "no_filter": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "decoys": {
+        "total": 7,
+        "flagged_full": 2,
+        "flagged_no_filter": 2
+      },
+      "rings": {
+        "ground_truth": 15,
+        "flagged": 16,
+        "injected_found": 14,
+        "injected_found_no_filter": 14
+      },
+      "n_txns": 98368,
+      "n_suspects": 427,
+      "accounts": {
+        "n_ground_truth": 224,
+        "full": {
+          "precision": 0.96,
+          "recall": 0.107,
+          "f1": 0.193
+        },
+        "no_if": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "seconds": 3.1
+    }
+  ],
+  "adversary_runs": [
+    {
+      "seed": 1,
+      "friction_before": 2.983,
+      "friction_after": 8.934,
+      "n_schemes_tested": 33,
+      "baseline_detected": true
+    },
+    {
+      "seed": 2,
+      "friction_before": 2.983,
+      "friction_after": 8.934,
+      "n_schemes_tested": 33,
+      "baseline_detected": true
+    },
+    {
+      "seed": 3,
+      "friction_before": 2.983,
+      "friction_after": 8.934,
+      "n_schemes_tested": 33,
+      "baseline_detected": true
+    },
+    {
+      "seed": 4,
+      "friction_before": 2.983,
+      "friction_after": 8.934,
+      "n_schemes_tested": 33,
+      "baseline_detected": true
+    },
+    {
+      "seed": 5,
+      "friction_before": 2.983,
+      "friction_after": 8.934,
+      "n_schemes_tested": 33,
+      "baseline_detected": true
+    },
+    {
+      "seed": 6,
+      "friction_before": 2.983,
+      "friction_after": 8.934,
+      "n_schemes_tested": 33,
+      "baseline_detected": true
+    },
+    {
+      "seed": 7,
+      "friction_before": 2.983,
+      "friction_after": 8.934,
+      "n_schemes_tested": 33,
+      "baseline_detected": true
+    },
+    {
+      "seed": 8,
+      "friction_before": 2.983,
+      "friction_after": 8.934,
+      "n_schemes_tested": 33,
+      "baseline_detected": true
+    },
+    {
+      "seed": 9,
+      "friction_before": 2.983,
+      "friction_after": 8.934,
+      "n_schemes_tested": 33,
+      "baseline_detected": true
+    },
+    {
+      "seed": 10,
+      "friction_before": 2.983,
+      "friction_after": 8.934,
+      "n_schemes_tested": 33,
+      "baseline_detected": true
+    }
+  ],
+  "aggregates": {
+    "by_noise": {
+      "low": {
+        "patterns": {
+          "cycle": {
+            "precision": {
+              "mean": 0.7217,
+              "std": 0.0929,
+              "n": 10
+            },
+            "recall": {
+              "mean": 0.58,
+              "std": 0.2201,
+              "n": 10
+            },
+            "f1": {
+              "mean": 0.633,
+              "std": 0.1718,
+              "n": 10
+            }
+          },
+          "mule_chain": {
+            "precision": {
+              "mean": 0.9299,
+              "std": 0.091,
+              "n": 10
+            },
+            "recall": {
+              "mean": 0.98,
+              "std": 0.0632,
+              "n": 10
+            },
+            "f1": {
+              "mean": 0.9527,
+              "std": 0.0687,
+              "n": 10
+            }
+          },
+          "smurfing": {
+            "precision": {
+              "mean": 1.0,
+              "std": 0.0,
+              "n": 10
+            },
+            "recall": {
+              "mean": 1.0,
+              "std": 0.0,
+              "n": 10
+            },
+            "f1": {
+              "mean": 1.0,
+              "std": 0.0,
+              "n": 10
+            }
+          }
+        },
+        "decoys_flagged": {
+          "mean": 2,
+          "std": 0.0,
+          "n": 10
+        },
+        "decoys_total": 7,
+        "rings_flagged": {
+          "mean": 14.2,
+          "std": 1.1353,
+          "n": 10
+        },
+        "injected_found": {
+          "mean": 12.8,
+          "std": 1.1353,
+          "n": 10
+        },
+        "ground_truth_rings": 15
+      },
+      "medium": {
+        "patterns": {
+          "cycle": {
+            "precision": {
+              "mean": 0.7634,
+              "std": 0.0548,
+              "n": 10
+            },
+            "recall": {
+              "mean": 0.68,
+              "std": 0.1687,
+              "n": 10
+            },
+            "f1": {
+              "mean": 0.7134,
+              "std": 0.1249,
+              "n": 10
+            }
+          },
+          "mule_chain": {
+            "precision": {
+              "mean": 0.8713,
+              "std": 0.1241,
+              "n": 10
+            },
+            "recall": {
+              "mean": 0.96,
+              "std": 0.0843,
+              "n": 10
+            },
+            "f1": {
+              "mean": 0.9085,
+              "std": 0.0844,
+              "n": 10
+            }
+          },
+          "smurfing": {
+            "precision": {
+              "mean": 1.0,
+              "std": 0.0,
+              "n": 10
+            },
+            "recall": {
+              "mean": 1.0,
+              "std": 0.0,
+              "n": 10
+            },
+            "f1": {
+              "mean": 1.0,
+              "std": 0.0,
+              "n": 10
+            }
+          }
+        },
+        "decoys_flagged": {
+          "mean": 2,
+          "std": 0.0,
+          "n": 10
+        },
+        "decoys_total": 7,
+        "rings_flagged": {
+          "mean": 15,
+          "std": 1.1547,
+          "n": 10
+        },
+        "injected_found": {
+          "mean": 13.2,
+          "std": 0.7888,
+          "n": 10
+        },
+        "ground_truth_rings": 15
+      },
+      "high": {
+        "patterns": {
+          "cycle": {
+            "precision": {
+              "mean": 0.7367,
+              "std": 0.0929,
+              "n": 10
+            },
+            "recall": {
+              "mean": 0.62,
+              "std": 0.1989,
+              "n": 10
+            },
+            "f1": {
+              "mean": 0.6654,
+              "std": 0.1646,
+              "n": 10
+            }
+          },
+          "mule_chain": {
+            "precision": {
+              "mean": 0.9466,
+              "std": 0.0864,
+              "n": 10
+            },
+            "recall": {
+              "mean": 0.92,
+              "std": 0.1033,
+              "n": 10
+            },
+            "f1": {
+              "mean": 0.9285,
+              "std": 0.0686,
+              "n": 10
+            }
+          },
+          "smurfing": {
+            "precision": {
+              "mean": 1.0,
+              "std": 0.0,
+              "n": 10
+            },
+            "recall": {
+              "mean": 1.0,
+              "std": 0.0,
+              "n": 10
+            },
+            "f1": {
+              "mean": 1.0,
+              "std": 0.0,
+              "n": 10
+            }
+          }
+        },
+        "decoys_flagged": {
+          "mean": 2,
+          "std": 0.0,
+          "n": 10
+        },
+        "decoys_total": 7,
+        "rings_flagged": {
+          "mean": 14,
+          "std": 1.2472,
+          "n": 10
+        },
+        "injected_found": {
+          "mean": 12.7,
+          "std": 1.1595,
+          "n": 10
+        },
+        "ground_truth_rings": 15
+      }
+    },
+    "pooled": {
+      "patterns": {
+        "cycle": {
+          "full": {
+            "precision": {
+              "mean": 0.7406,
+              "std": 0.0812,
+              "n": 30
+            },
+            "recall": {
+              "mean": 0.6267,
+              "std": 0.1946,
+              "n": 30
+            },
+            "f1": {
+              "mean": 0.6706,
+              "std": 0.1534,
+              "n": 30
+            }
+          },
+          "no_filter": {
+            "precision": {
+              "mean": 0.7356,
+              "std": 0.0851,
+              "n": 30
+            },
+            "recall": {
+              "mean": 0.6267,
+              "std": 0.1946,
+              "n": 30
+            },
+            "f1": {
+              "mean": 0.6684,
+              "std": 0.154,
+              "n": 30
+            }
+          }
+        },
+        "mule_chain": {
+          "full": {
+            "precision": {
+              "mean": 0.9159,
+              "std": 0.1037,
+              "n": 30
+            },
+            "recall": {
+              "mean": 0.9533,
+              "std": 0.086,
+              "n": 30
+            },
+            "f1": {
+              "mean": 0.9299,
+              "std": 0.074,
+              "n": 30
+            }
+          },
+          "no_filter": {
+            "precision": {
+              "mean": 0.8601,
+              "std": 0.1172,
+              "n": 30
+            },
+            "recall": {
+              "mean": 0.9533,
+              "std": 0.086,
+              "n": 30
+            },
+            "f1": {
+              "mean": 0.8992,
+              "std": 0.0816,
+              "n": 30
+            }
+          }
+        },
+        "smurfing": {
+          "full": {
+            "precision": {
+              "mean": 1.0,
+              "std": 0.0,
+              "n": 30
+            },
+            "recall": {
+              "mean": 1.0,
+              "std": 0.0,
+              "n": 30
+            },
+            "f1": {
+              "mean": 1.0,
+              "std": 0.0,
+              "n": 30
+            }
+          },
+          "no_filter": {
+            "precision": {
+              "mean": 1.0,
+              "std": 0.0,
+              "n": 30
+            },
+            "recall": {
+              "mean": 1.0,
+              "std": 0.0,
+              "n": 30
+            },
+            "f1": {
+              "mean": 1.0,
+              "std": 0.0,
+              "n": 30
+            }
+          }
+        }
+      },
+      "decoys_flagged": {
+        "full": {
+          "mean": 2,
+          "std": 0.0,
+          "n": 30
+        },
+        "no_filter": {
+          "mean": 2.1,
+          "std": 0.3051,
+          "n": 30
+        },
+        "total": 7
+      },
+      "accounts": {
+        "full": {
+          "precision": {
+            "mean": 0.9495,
+            "std": 0.0162,
+            "n": 30
+          },
+          "recall": {
+            "mean": 0.1077,
+            "std": 0.0236,
+            "n": 30
+          },
+          "f1": {
+            "mean": 0.1927,
+            "std": 0.0381,
+            "n": 30
+          }
+        },
+        "no_if": {
+          "precision": {
+            "mean": 0.3,
+            "std": 0.4661,
+            "n": 30
+          },
+          "recall": {
+            "mean": 0.007,
+            "std": 0.0124,
+            "n": 30
+          },
+          "f1": {
+            "mean": 0.0136,
+            "std": 0.0238,
+            "n": 30
+          }
+        }
+      }
+    },
+    "adversary": {
+      "friction_before": {
+        "mean": 2.983,
+        "std": 0.0,
+        "n": 10
+      },
+      "friction_after": {
+        "mean": 8.934,
+        "std": 0.0,
+        "n": 10
+      },
+      "n_schemes_tested": {
+        "mean": 33,
+        "std": 0.0,
+        "n": 10
+      },
+      "baseline_detected": 10,
+      "n_runs": 10
+    }
+  }
+}

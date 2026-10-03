@@ -7,7 +7,7 @@ FRONTEND := frontend
 # VPY is relative to backend/ (always used after 'cd backend &&')
 VPY      := ./.venv/bin/python
 
-.PHONY: help setup data test run run-backend run-frontend verify demo-metrics clean dev-urls
+.PHONY: help setup data test run run-backend run-frontend verify demo-metrics benchmark clean dev-urls
 
 help:
 	@echo "ShadowFlow targets:"
@@ -19,6 +19,7 @@ help:
 	@echo "  make run-frontend  frontend only (foreground)"
 	@echo "  make verify        health-check both servers"
 	@echo "  make demo-metrics  print pipeline + adversary + federation numbers"
+	@echo "  make benchmark     run the 10-seed x 3-noise benchmark (~2-3 min)"
 	@echo "  make clean         remove venv, node_modules, and generated data"
 
 setup:
@@ -56,6 +57,9 @@ verify:
 
 demo-metrics:
 	cd $(BACKEND) && $(VPY) print_metrics.py
+
+benchmark:
+	cd $(BACKEND) && $(VPY) benchmark.py
 
 clean:
 	rm -rf $(BACKEND)/.venv $(FRONTEND)/node_modules

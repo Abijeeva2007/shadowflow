@@ -43,6 +43,10 @@ import numpy as np
 import pandas as pd
 
 SEED = 42
+# Benign traffic volume multiplier used by the benchmark (low/medium/high).
+# 1.0 is the committed default and reproduces the seed-42 dataset exactly;
+# only background benign volume scales - injected rings and decoys do not.
+NOISE = 1.0
 START = datetime(2026, 1, 1)  # 90-day window: 2026-01-01 .. 2026-03-31
 DAYS = 90
 BANKS = ["BankA", "BankB", "BankC"]
@@ -129,6 +133,13 @@ def _mix_amount(amount: float, mix: float) -> float:
     return amount * float(nprng.uniform(1.0 - mix, 1.0 + mix))
 
 
+def _noise(k: int) -> int:
+    """Scale a benign-volume count by NOISE (identity when NOISE == 1.0)."""
+    if NOISE == 1.0:
+        return k
+    return max(1, int(round(k * NOISE)))
+
+
 # ------------------------------------------------------------------ benign world
 def build_benign_world() -> dict[str, list[str]]:
     """Create accounts and benign background traffic; return the persons pool."""
@@ -149,7 +160,7 @@ def build_benign_world() -> dict[str, list[str]]:
         # --- payroll: 8 employers x 30-70 employees x 3 monthly runs --------
         for emp in employers:
             n_emp = int(nprng.integers(30, 70))
-            employees = rng.sample(persons, k=min(n_emp, len(persons)))
+            employees = rng.sample(persons, k=min(_noise(n_emp), len(persons)))
             pay_day = int(nprng.integers(1, 28))
             salary = float(nprng.uniform(2500, 4100))
             revenue_paid = 0.0
@@ -179,7 +190,7 @@ def build_benign_world() -> dict[str, list[str]]:
             daily = int(nprng.integers(2, 12))
             popularity = float(nprng.uniform(0.4, 1.5))
             for day in range(DAYS):
-                n_today = max(0, int(nprng.poisson(daily * popularity)))
+                n_today = max(0, int(nprng.poisson(daily * popularity * NOISE)))
                 d = START + timedelta(days=day)
                 for _ in range(n_today):
                     cust = persons[int(nprng.integers(0, len(persons)))]
@@ -195,7 +206,7 @@ def build_benign_world() -> dict[str, list[str]]:
         for landlord in landlords:
             n_tenants = int(nprng.integers(4, 12))
             rent_day = int(nprng.integers(1, 6))
-            for _t in range(n_tenants):
+            for _t in range(_noise(n_tenants)):
                 tenant = persons[int(nprng.integers(0, len(persons)))]
                 amt = float(nprng.uniform(700, 2200))
                 for month in range(3):
@@ -210,7 +221,7 @@ def build_benign_world() -> dict[str, list[str]]:
         for util in utilities:
             for day in range(DAYS):
                 d = START + timedelta(days=day)
-                for _k in range(int(nprng.integers(5, 15))):
+                for _k in range(_noise(int(nprng.integers(5, 15)))):
                     payer = persons[int(nprng.integers(0, len(persons)))]
                     ts = d + timedelta(minutes=int(nprng.integers(7 * 60, 23 * 60)))
                     amt = float(nprng.uniform(40, 260))
@@ -220,7 +231,7 @@ def build_benign_world() -> dict[str, list[str]]:
         for _k in range(40):
             a, b = rng.sample(persons, 2)
             for day in range(DAYS):
-                if nprng.random() < 0.25:
+                if nprng.random() < 0.25 * NOISE:
                     d = START + timedelta(days=day)
                     ts = d + timedelta(minutes=int(nprng.integers(6 * 60, 24 * 60)))
                     amt = min(float(nprng.lognormal(4.0, 1.0)), 5000.0)
@@ -228,7 +239,7 @@ def build_benign_world() -> dict[str, list[str]]:
 
         # --- employers also pay business expenses to shops occasionally -------
         for emp in employers:
-            for _k in range(30):
+            for _k in range(_noise(30)):
                 shop = shops[int(nprng.integers(0, len(shops)))]
                 day = int(nprng.integers(0, DAYS))
                 d = START + timedelta(days=day)
@@ -236,7 +247,7 @@ def build_benign_world() -> dict[str, list[str]]:
                 add_txn(ts, emp, shop, float(nprng.uniform(100, 1500)), "card")
 
     # --- interbank: people moving money between their own accounts ----------
-    for _k in range(80):
+    for _k in range(_noise(80)):
         b1, b2 = rng.sample(BANKS, 2)
         a = persons_of[b1][int(nprng.integers(0, len(persons_of[b1])))]
         b = persons_of[b2][int(nprng.integers(0, len(persons_of[b2])))]
@@ -684,8 +695,26 @@ def give_ring_accounts_normal_lives() -> None:
 
 
 # ------------------------------------------------------------------------ main
-def main() -> None:
-    rng.seed(SEED)
+def main(seed: int | None = None, out_dir: Path | None = None) -> None:
+    """Generate the dataset; defaults reproduce the committed seed-42 data.
+
+    `seed` and `out_dir` let the benchmark regenerate other seeds into a
+    scratch directory without touching data/. Module state is reset so main()
+    is safe to call repeatedly within one process.
+    """
+    global rng, nprng, DATA_DIR
+    if seed is None:
+        seed = SEED
+    rng = random.Random(seed)
+    nprng = np.random.default_rng(seed)
+    _txn_counter[0] = 0
+    ground_truth.clear()
+    ground_truth.update({"cycles": [], "mule_chains": [], "smurfing": [], "decoys": []})
+    _all_txn_rows.clear()
+    _all_accounts.clear()
+    _ring_members.clear()
+    if out_dir is not None:
+        DATA_DIR = out_dir
     persons_of = build_benign_world()
     add_decoys(persons_of)
     inject_cycles(5)
