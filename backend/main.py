@@ -9,8 +9,14 @@ first request after boot is fast. How long startup took is logged.
 
 from __future__ import annotations
 
+import gc
+import json
 import os
+import sys
+import threading
 import time
+from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import TimeoutError as FutureTimeoutError
 from contextlib import asynccontextmanager
 from datetime import datetime
 
@@ -31,6 +37,70 @@ STATE: DetectionState | None = None
 FED: fed.FederatedState | None = None
 ADVERSARY_CACHE: dict | None = None
 DOSSIER_CHAINS: dict[str, list[dict]] = {}  # ring_id -> hash chain at export time
+
+# --- adversary lab -------------------------------------------------------------
+# The default 32-scheme search costs ~a minute of CPU on a 0.1-CPU free-tier
+# box, so it is precomputed into data/adversary_default.json (generate it with
+# `python precompute_adversary.py`) and served instantly. Interactive "Run"
+# searches are capped, run on one worker thread so /health stays responsive,
+# are limited to one at a time, and give up after ADV_RUN_TIMEOUT_S.
+ADV_DEFAULT_PATH = config.DATA_DIR / "adversary_default.json"
+# 4 schemes keeps an interactive run inside ~10s of the 0.1-CPU free tier
+# (a 9-scheme run does not finish inside the 20s timeout there)
+ADV_RUN_MAX_SCHEMES = 4
+ADV_RUN_TIMEOUT_S = 20.0
+_ADV_LOCK = threading.Lock()
+_ADV_BUSY = False
+_ADV_EXECUTOR = ThreadPoolExecutor(max_workers=1, thread_name_prefix="adversary")
+
+
+def peak_rss_mb() -> float:
+    """Peak resident memory in MB (VmHWM on Linux, ru_maxrss elsewhere)."""
+    try:
+        with open("/proc/self/status") as f:
+            for line in f:
+                if line.startswith("VmHWM:"):
+                    return int(line.split()[1]) / 1024.0
+    except OSError:
+        pass
+    import resource
+
+    peak = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+    return peak / (1024.0 * 1024.0) if sys.platform == "darwin" else peak / 1024.0
+
+
+def log_peak(label: str) -> None:
+    """Log peak memory; the free tier has 512MB, so 400MB is the alarm line."""
+    peak = peak_rss_mb()
+    note = "  OVER 400MB - trim data copies" if peak > 400 else ""
+    print(f"ShadowFlow: peak memory after {label}: {peak:.0f} MB{note}")
+
+
+def load_adversary_default() -> None:
+    """Serve the precomputed default report; if the file is missing, compute
+    it on a background thread (never block startup on the free tier)."""
+    global ADVERSARY_CACHE
+    if ADV_DEFAULT_PATH.exists():
+        try:
+            ADVERSARY_CACHE = json.loads(ADV_DEFAULT_PATH.read_text())
+            print("ShadowFlow: adversary default loaded from adversary_default.json")
+            return
+        except json.JSONDecodeError:
+            print("ShadowFlow: adversary_default.json unreadable -> recomputing")
+    threading.Thread(
+        target=_compute_adversary_default, name="adversary-precompute", daemon=True
+    ).start()
+
+
+def _compute_adversary_default() -> None:
+    global ADVERSARY_CACHE
+    try:
+        st = _state()
+        src, tgt = _default_route()
+        ADVERSARY_CACHE = run_adversary(st.g, st.suspects, src, tgt).summary()
+        log_peak("default adversary report")
+    except Exception as e:  # a failed lab must never take the API down
+        print(f"ShadowFlow: adversary precompute failed: {e}")
 
 
 def _allowed_origins() -> list[str]:
@@ -92,6 +162,13 @@ async def lifespan(app: FastAPI):
         f"ShadowFlow ready in {elapsed:.1f}s: {len(STATE.rings)} rings, "
         f"{len(FED.chains)} federated cases."
     )
+    # The detection state lives for the whole process lifetime; move it to the
+    # permanent GC generation so later collections (e.g. during an adversary
+    # run) do not rescan 70k transactions and stall /health.
+    gc.collect()
+    gc.freeze()
+    log_peak("startup")
+    load_adversary_default()
     yield
 
 
@@ -175,6 +252,9 @@ def healthcheck() -> dict:
     milliseconds. By the time uvicorn serves requests the startup pipeline has
     already completed (lifespan runs before the socket accepts), so `ready`
     is True for any live request.
+
+    Must stay free of locks and computation: Render's free-tier health check
+    times out after 5s, and a busy adversary worker would fail the deploy.
     """
     return {"status": "ok", "ready": STATE is not None}
 
@@ -396,47 +476,103 @@ def _default_route() -> tuple[str, str]:
 
 @app.post("/api/adversary/run")
 def adversary_run(req: AdversaryRequest) -> dict:
-    global ADVERSARY_CACHE
+    """Adversary search.
+
+    No lever overrides: return the precomputed default report instantly, so
+    opening the page never triggers a search. Custom levers: cap the grid,
+    run it on the worker thread (so /health stays responsive), allow only one
+    run at a time (409 "busy"), and time out after ADV_RUN_TIMEOUT_S (504).
+    """
+    global ADVERSARY_CACHE, _ADV_BUSY
     st = _state()
+
+    has_levers = any(
+        v is not None
+        for v in (req.hop_delay_hours, req.n_splits, req.n_decoys, req.n_banks)
+    )
+    if not has_levers:
+        if ADVERSARY_CACHE is None:
+            raise HTTPException(
+                503, "adversary report still computing - retry in a moment"
+            )
+        return ADVERSARY_CACHE
+
     src = req.source or _default_route()[0]
     tgt = req.target or _default_route()[1]
     for acc in (src, tgt):
         if acc not in st.g:
             raise HTTPException(404, f"unknown account '{acc}'")
-    if any(
-        v is not None
-        for v in (req.hop_delay_hours, req.n_splits, req.n_decoys, req.n_banks)
-    ):
-        from engine.adversary import SchemeParams
 
-        delays = sorted({0.0, float(req.hop_delay_hours or 0)})
-        splits = sorted({1, int(req.n_splits or 1)})
-        decoys = sorted({0, int(req.n_decoys or 0)})
-        banks = sorted({1, int(req.n_banks or 1)})
-        grid = [
-            SchemeParams(
-                hop_delay_hours=d,
-                n_splits=s,
-                jitter=0.1 if s > 1 else 0,
-                n_decoys=c,
-                n_banks=b,
+    from engine.adversary import SchemeParams
+
+    delays = sorted({0.0, float(req.hop_delay_hours or 0)})
+    splits = sorted({1, int(req.n_splits or 1)})
+    decoys = sorted({0, int(req.n_decoys or 0)})
+    banks = sorted({1, int(req.n_banks or 1)})
+    grid = [
+        SchemeParams(
+            hop_delay_hours=d,
+            n_splits=s,
+            jitter=0.1 if s > 1 else 0,
+            n_decoys=c,
+            n_banks=b,
+        )
+        for d in delays
+        for s in splits
+        for c in decoys
+        for b in banks
+    ]
+
+    with _ADV_LOCK:
+        if _ADV_BUSY:
+            raise HTTPException(
+                409,
+                "an adversary run is already in progress - "
+                "wait for it to finish before starting another",
             )
-            for d in delays
-            for s in splits
-            for c in decoys
-            for b in banks
-        ]
-    else:
-        grid = None  # default demo grid
-    report = run_adversary(st.g, st.suspects, src, tgt, amount=req.amount, grid=grid)
-    ADVERSARY_CACHE = report.summary()
+        _ADV_BUSY = True
+
+    def job() -> None:
+        global ADVERSARY_CACHE, _ADV_BUSY
+        try:
+            report = run_adversary(
+                st.g,
+                st.suspects,
+                src,
+                tgt,
+                amount=req.amount,
+                grid=grid,
+                max_schemes=ADV_RUN_MAX_SCHEMES,
+            )
+            ADVERSARY_CACHE = report.summary()
+            log_peak("adversary run")
+        except Exception as e:  # a failed search must not wedge the lab
+            print(f"ShadowFlow: adversary run failed: {e}")
+        finally:
+            with _ADV_LOCK:
+                _ADV_BUSY = False
+
+    future = _ADV_EXECUTOR.submit(job)
+    try:
+        future.result(timeout=ADV_RUN_TIMEOUT_S)
+    except FutureTimeoutError:
+        raise HTTPException(
+            504,
+            f"adversary search exceeded {ADV_RUN_TIMEOUT_S:.0f}s - "
+            "try fewer schemes (the search finishes in the background)",
+        )
+    except Exception as e:
+        raise HTTPException(500, f"adversary run failed: {e}")
+
+    if ADVERSARY_CACHE is None:
+        raise HTTPException(500, "adversary run produced no result")
     return ADVERSARY_CACHE
 
 
 @app.get("/api/adversary/frontier")
 def adversary_frontier() -> dict:
     if ADVERSARY_CACHE is None:
-        raise HTTPException(404, "no adversary run yet - POST /api/adversary/run first")
+        raise HTTPException(503, "adversary report still computing - retry in a moment")
     return ADVERSARY_CACHE
 
 

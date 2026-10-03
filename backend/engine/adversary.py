@@ -27,13 +27,21 @@ can be tightened when evasion paths are known.
 
 from __future__ import annotations
 
+import gc
 import random
+import time
 from dataclasses import dataclass, field
 from datetime import timedelta
 
 import networkx as nx
 
 from engine import config, patterns
+
+# Cooperative yield between schemes: graph copies and detector passes are
+# long CPU-bound stretches, and the API thread (which must answer /health)
+# runs in the same interpreter. Sleeping briefly between schemes hands the
+# GIL over instead of waiting for the interpreter's switch interval.
+YIELD_S = 0.005
 
 
 @dataclass
@@ -295,6 +303,20 @@ def _naive_cost(fee_pct: float = 2.0) -> float:
     return 0.05 + 2 * fee_pct + 2.0
 
 
+def cap_grid(grid: list[SchemeParams], max_schemes: int | None) -> list[SchemeParams]:
+    """Thin a grid down to at most `max_schemes` schemes, deterministically.
+
+    Evenly spaced picks keep the whole lever space represented, including the
+    cheap-evasion corner. Interactive "Run" searches use this so they finish
+    in seconds on a 0.1-CPU free-tier box; the precomputed default report and
+    the benchmark pass max_schemes=None and search the full grid.
+    """
+    if max_schemes is None or len(grid) <= max_schemes:
+        return grid
+    step = len(grid) / max_schemes
+    return [grid[int(i * step)] for i in range(max_schemes)]
+
+
 def run_adversary(
     g: nx.MultiDiGraph,
     suspects: set[str],
@@ -303,13 +325,19 @@ def run_adversary(
     amount: float = 100_000.0,
     grid: list[SchemeParams] | None = None,
     seed: int = 42,
+    max_schemes: int | None = None,
 ) -> AdversaryReport:
-    """Search the lever grid; build the evasion frontier; run the harden step."""
+    """Search the lever grid; build the evasion frontier; run the harden step.
+
+    `max_schemes` thins both the search and the post-hardening re-search
+    (see cap_grid) so an interactive run stays inside its time budget.
+    """
     rng = random.Random(seed)
     report = AdversaryReport()
 
     if grid is None:
         grid = default_grid()
+    grid = cap_grid(grid, max_schemes)
 
     naive_params = SchemeParams()
     naive = {"cost": _naive_cost(naive_params.fee_pct)}
@@ -329,6 +357,7 @@ def run_adversary(
     pre_existing = {
         frozenset(h["accounts"]) for hits in base_hits.values() for h in hits
     }
+    del h0  # free the copy before the next one is built (memory, not style)
 
     # baseline: does the naive scheme get caught?
     h_base, extra_base = build_scheme_graph(
@@ -344,6 +373,7 @@ def run_adversary(
     )
     report.baseline_detected = base_det
     report.n_schemes_tested += 1
+    del h_base
 
     evaders: list[SchemeResult] = []
     for p in grid:
@@ -387,6 +417,10 @@ def run_adversary(
         )
         if not det:
             evaders.append(r)
+        del h  # one graph copy alive at a time, not two
+        time.sleep(YIELD_S)
+
+    gc.collect()
 
     # cheapest evader = lowest friction among undetected
     if evaders:
@@ -398,7 +432,16 @@ def run_adversary(
 
     # ---- harden step ----------------------------------------------------
     hard = _harden(
-        report, g, suspects, source, target, amount, rng, naive, pre_existing
+        report,
+        g,
+        suspects,
+        source,
+        target,
+        amount,
+        rng,
+        naive,
+        pre_existing,
+        harden_grid=cap_grid(default_grid(), max_schemes),
     )
     report.friction_after = hard["friction_after"]
     report.hardened_thresholds = hard["thresholds"]
@@ -415,6 +458,7 @@ def _harden(
     rng: random.Random,
     naive: dict,
     pre_existing: set[frozenset] | None = None,
+    harden_grid: list[SchemeParams] | None = None,
 ) -> dict:
     """Tighten detector thresholds based on the evasions found and re-measure.
 
@@ -448,7 +492,7 @@ def _harden(
 
     # re-run the full grid under hardened thresholds
     evaders_after: list[SchemeResult] = []
-    for q in default_grid():
+    for q in (harden_grid if harden_grid is not None else default_grid()):
         h, extra = build_scheme_graph(g, source, target, amount, q, rng)
         allowed = (
             suspects | {n for n in h if str(n).startswith("ADV_")} | {source, target}
@@ -491,6 +535,9 @@ def _harden(
                     friction=friction_score(q, extra, naive),
                 )
             )
+        del h
+        time.sleep(YIELD_S)
+    gc.collect()
     if evaders_after:
         fr_after = min(r.friction for r in evaders_after)
     else:

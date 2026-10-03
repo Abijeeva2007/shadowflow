@@ -1,0 +1,540 @@
+{
+  "baseline_detected": true,
+  "n_schemes_tested": 33,
+  "cheapest_evader": {
+    "label": "delay=6h splits=1 jitter=0 decoys=0 banks=1",
+    "detected": false,
+    "evidence": "",
+    "cost_hours": 12.05,
+    "fee_pct": 4.0,
+    "extra_accounts": 2,
+    "friction": 2.98,
+    "params": {
+      "hop_delay_hours": 6.0,
+      "n_splits": 1,
+      "jitter": 0.0,
+      "n_decoys": 0,
+      "n_banks": 1
+    }
+  },
+  "friction_before": 2.98,
+  "friction_after": 8.93,
+  "hardened_thresholds": {
+    "chain_max_delay_min": 480,
+    "chain_min_forward": 0.9
+  },
+  "frontier": [
+    {
+      "label": "delay=0h splits=1 jitter=0 decoys=0 banks=1",
+      "params": {
+        "hop_delay_hours": 0.0,
+        "n_splits": 1,
+        "jitter": 0.0,
+        "n_decoys": 0,
+        "n_banks": 1
+      },
+      "detected": true,
+      "evidence": "mule_chain on injected mule ['ADV_BankA_1', 'ADV_BankA_2']",
+      "cost_hours": 0.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 2,
+      "friction": 1.0
+    },
+    {
+      "label": "delay=0h splits=1 jitter=0 decoys=0 banks=3",
+      "params": {
+        "hop_delay_hours": 0.0,
+        "n_splits": 1,
+        "jitter": 0.0,
+        "n_decoys": 0,
+        "n_banks": 3
+      },
+      "detected": true,
+      "evidence": "mule_chain on injected mule ['ADV_BankA_1', 'ADV_BankB_1']",
+      "cost_hours": 0.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 2,
+      "friction": 1.0
+    },
+    {
+      "label": "delay=0h splits=1 jitter=0 decoys=20 banks=1",
+      "params": {
+        "hop_delay_hours": 0.0,
+        "n_splits": 1,
+        "jitter": 0.0,
+        "n_decoys": 20,
+        "n_banks": 1
+      },
+      "detected": true,
+      "evidence": "mule_chain on injected mule ['ADV_BankA_1', 'ADV_BankA_2']",
+      "cost_hours": 0.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 2,
+      "friction": 1.17
+    },
+    {
+      "label": "delay=0h splits=1 jitter=0 decoys=20 banks=3",
+      "params": {
+        "hop_delay_hours": 0.0,
+        "n_splits": 1,
+        "jitter": 0.0,
+        "n_decoys": 20,
+        "n_banks": 3
+      },
+      "detected": true,
+      "evidence": "mule_chain on injected mule ['ADV_BankA_1', 'ADV_BankB_1']",
+      "cost_hours": 0.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 2,
+      "friction": 1.17
+    },
+    {
+      "label": "delay=0h splits=4 jitter=0.1 decoys=0 banks=1",
+      "params": {
+        "hop_delay_hours": 0.0,
+        "n_splits": 4,
+        "jitter": 0.1,
+        "n_decoys": 0,
+        "n_banks": 1
+      },
+      "detected": true,
+      "evidence": "mule_chain on injected mule ['ADV_BankA_1', 'ADV_BankA_2']",
+      "cost_hours": 0.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 8,
+      "friction": 1.99
+    },
+    {
+      "label": "delay=0h splits=4 jitter=0.1 decoys=0 banks=3",
+      "params": {
+        "hop_delay_hours": 0.0,
+        "n_splits": 4,
+        "jitter": 0.1,
+        "n_decoys": 0,
+        "n_banks": 3
+      },
+      "detected": true,
+      "evidence": "mule_chain on injected mule ['ADV_BankA_1', 'ADV_BankB_1']",
+      "cost_hours": 0.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 8,
+      "friction": 1.99
+    },
+    {
+      "label": "delay=0h splits=4 jitter=0.1 decoys=20 banks=1",
+      "params": {
+        "hop_delay_hours": 0.0,
+        "n_splits": 4,
+        "jitter": 0.1,
+        "n_decoys": 20,
+        "n_banks": 1
+      },
+      "detected": true,
+      "evidence": "mule_chain on injected mule ['ADV_BankA_1', 'ADV_BankA_2']",
+      "cost_hours": 0.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 8,
+      "friction": 2.16
+    },
+    {
+      "label": "delay=0h splits=4 jitter=0.1 decoys=20 banks=3",
+      "params": {
+        "hop_delay_hours": 0.0,
+        "n_splits": 4,
+        "jitter": 0.1,
+        "n_decoys": 20,
+        "n_banks": 3
+      },
+      "detected": true,
+      "evidence": "mule_chain on injected mule ['ADV_BankA_1', 'ADV_BankB_1']",
+      "cost_hours": 0.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 8,
+      "friction": 2.16
+    },
+    {
+      "label": "delay=6h splits=1 jitter=0 decoys=0 banks=1",
+      "params": {
+        "hop_delay_hours": 6.0,
+        "n_splits": 1,
+        "jitter": 0.0,
+        "n_decoys": 0,
+        "n_banks": 1
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 12.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 2,
+      "friction": 2.98
+    },
+    {
+      "label": "delay=6h splits=1 jitter=0 decoys=0 banks=3",
+      "params": {
+        "hop_delay_hours": 6.0,
+        "n_splits": 1,
+        "jitter": 0.0,
+        "n_decoys": 0,
+        "n_banks": 3
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 12.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 2,
+      "friction": 2.98
+    },
+    {
+      "label": "delay=6h splits=1 jitter=0 decoys=20 banks=1",
+      "params": {
+        "hop_delay_hours": 6.0,
+        "n_splits": 1,
+        "jitter": 0.0,
+        "n_decoys": 20,
+        "n_banks": 1
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 12.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 2,
+      "friction": 3.15
+    },
+    {
+      "label": "delay=6h splits=1 jitter=0 decoys=20 banks=3",
+      "params": {
+        "hop_delay_hours": 6.0,
+        "n_splits": 1,
+        "jitter": 0.0,
+        "n_decoys": 20,
+        "n_banks": 3
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 12.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 2,
+      "friction": 3.15
+    },
+    {
+      "label": "delay=6h splits=4 jitter=0.1 decoys=0 banks=1",
+      "params": {
+        "hop_delay_hours": 6.0,
+        "n_splits": 4,
+        "jitter": 0.1,
+        "n_decoys": 0,
+        "n_banks": 1
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 12.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 8,
+      "friction": 3.98
+    },
+    {
+      "label": "delay=6h splits=4 jitter=0.1 decoys=0 banks=3",
+      "params": {
+        "hop_delay_hours": 6.0,
+        "n_splits": 4,
+        "jitter": 0.1,
+        "n_decoys": 0,
+        "n_banks": 3
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 12.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 8,
+      "friction": 3.98
+    },
+    {
+      "label": "delay=6h splits=4 jitter=0.1 decoys=20 banks=1",
+      "params": {
+        "hop_delay_hours": 6.0,
+        "n_splits": 4,
+        "jitter": 0.1,
+        "n_decoys": 20,
+        "n_banks": 1
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 12.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 8,
+      "friction": 4.14
+    },
+    {
+      "label": "delay=6h splits=4 jitter=0.1 decoys=20 banks=3",
+      "params": {
+        "hop_delay_hours": 6.0,
+        "n_splits": 4,
+        "jitter": 0.1,
+        "n_decoys": 20,
+        "n_banks": 3
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 12.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 8,
+      "friction": 4.14
+    },
+    {
+      "label": "delay=24h splits=1 jitter=0 decoys=0 banks=1",
+      "params": {
+        "hop_delay_hours": 24.0,
+        "n_splits": 1,
+        "jitter": 0.0,
+        "n_decoys": 0,
+        "n_banks": 1
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 48.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 2,
+      "friction": 8.93
+    },
+    {
+      "label": "delay=24h splits=1 jitter=0 decoys=0 banks=3",
+      "params": {
+        "hop_delay_hours": 24.0,
+        "n_splits": 1,
+        "jitter": 0.0,
+        "n_decoys": 0,
+        "n_banks": 3
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 48.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 2,
+      "friction": 8.93
+    },
+    {
+      "label": "delay=24h splits=1 jitter=0 decoys=20 banks=1",
+      "params": {
+        "hop_delay_hours": 24.0,
+        "n_splits": 1,
+        "jitter": 0.0,
+        "n_decoys": 20,
+        "n_banks": 1
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 48.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 2,
+      "friction": 9.1
+    },
+    {
+      "label": "delay=24h splits=1 jitter=0 decoys=20 banks=3",
+      "params": {
+        "hop_delay_hours": 24.0,
+        "n_splits": 1,
+        "jitter": 0.0,
+        "n_decoys": 20,
+        "n_banks": 3
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 48.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 2,
+      "friction": 9.1
+    },
+    {
+      "label": "delay=24h splits=4 jitter=0.1 decoys=0 banks=1",
+      "params": {
+        "hop_delay_hours": 24.0,
+        "n_splits": 4,
+        "jitter": 0.1,
+        "n_decoys": 0,
+        "n_banks": 1
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 48.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 8,
+      "friction": 9.93
+    },
+    {
+      "label": "delay=24h splits=4 jitter=0.1 decoys=0 banks=3",
+      "params": {
+        "hop_delay_hours": 24.0,
+        "n_splits": 4,
+        "jitter": 0.1,
+        "n_decoys": 0,
+        "n_banks": 3
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 48.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 8,
+      "friction": 9.93
+    },
+    {
+      "label": "delay=24h splits=4 jitter=0.1 decoys=20 banks=1",
+      "params": {
+        "hop_delay_hours": 24.0,
+        "n_splits": 4,
+        "jitter": 0.1,
+        "n_decoys": 20,
+        "n_banks": 1
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 48.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 8,
+      "friction": 10.09
+    },
+    {
+      "label": "delay=24h splits=4 jitter=0.1 decoys=20 banks=3",
+      "params": {
+        "hop_delay_hours": 24.0,
+        "n_splits": 4,
+        "jitter": 0.1,
+        "n_decoys": 20,
+        "n_banks": 3
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 48.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 8,
+      "friction": 10.09
+    },
+    {
+      "label": "delay=48h splits=1 jitter=0 decoys=0 banks=1",
+      "params": {
+        "hop_delay_hours": 48.0,
+        "n_splits": 1,
+        "jitter": 0.0,
+        "n_decoys": 0,
+        "n_banks": 1
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 96.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 2,
+      "friction": 16.87
+    },
+    {
+      "label": "delay=48h splits=1 jitter=0 decoys=0 banks=3",
+      "params": {
+        "hop_delay_hours": 48.0,
+        "n_splits": 1,
+        "jitter": 0.0,
+        "n_decoys": 0,
+        "n_banks": 3
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 96.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 2,
+      "friction": 16.87
+    },
+    {
+      "label": "delay=48h splits=1 jitter=0 decoys=20 banks=1",
+      "params": {
+        "hop_delay_hours": 48.0,
+        "n_splits": 1,
+        "jitter": 0.0,
+        "n_decoys": 20,
+        "n_banks": 1
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 96.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 2,
+      "friction": 17.03
+    },
+    {
+      "label": "delay=48h splits=1 jitter=0 decoys=20 banks=3",
+      "params": {
+        "hop_delay_hours": 48.0,
+        "n_splits": 1,
+        "jitter": 0.0,
+        "n_decoys": 20,
+        "n_banks": 3
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 96.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 2,
+      "friction": 17.03
+    },
+    {
+      "label": "delay=48h splits=4 jitter=0.1 decoys=0 banks=1",
+      "params": {
+        "hop_delay_hours": 48.0,
+        "n_splits": 4,
+        "jitter": 0.1,
+        "n_decoys": 0,
+        "n_banks": 1
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 96.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 8,
+      "friction": 17.86
+    },
+    {
+      "label": "delay=48h splits=4 jitter=0.1 decoys=0 banks=3",
+      "params": {
+        "hop_delay_hours": 48.0,
+        "n_splits": 4,
+        "jitter": 0.1,
+        "n_decoys": 0,
+        "n_banks": 3
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 96.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 8,
+      "friction": 17.86
+    },
+    {
+      "label": "delay=48h splits=4 jitter=0.1 decoys=20 banks=1",
+      "params": {
+        "hop_delay_hours": 48.0,
+        "n_splits": 4,
+        "jitter": 0.1,
+        "n_decoys": 20,
+        "n_banks": 1
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 96.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 8,
+      "friction": 18.02
+    },
+    {
+      "label": "delay=48h splits=4 jitter=0.1 decoys=20 banks=3",
+      "params": {
+        "hop_delay_hours": 48.0,
+        "n_splits": 4,
+        "jitter": 0.1,
+        "n_decoys": 20,
+        "n_banks": 3
+      },
+      "detected": false,
+      "evidence": "",
+      "cost_hours": 96.05,
+      "fee_pct": 4.0,
+      "extra_accounts": 8,
+      "friction": 18.02
+    }
+  ]
+}
