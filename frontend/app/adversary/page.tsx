@@ -113,19 +113,38 @@ export default function AdversaryPage() {
     }
   }, []);
 
-  // default 32-scheme grid on first load so the page is never empty
-  useEffect(() => {
-    run({});
-  }, [run]);
+  // the default report is precomputed server-side (data/adversary_default.json),
+  // so opening the page is one cheap GET - never a 32-scheme search on load
+  const loadDefault = useCallback(async () => {
+    try {
+      const res = await api<AdversaryResult>("/api/adversary/frontier");
+      setResult(res);
+      setWaking(false);
+      setError(null);
+    } catch (e: any) {
+      if (isWakingErr(e)) {
+        // backend still booting or report still computing: retry until it lands
+        setWaking(true);
+        setWakeAttempts((a) => a + 1);
+      } else {
+        setError(String(e.message ?? e));
+        setWaking(false);
+      }
+    }
+  }, []);
 
-  // auto-retry the initial grid while the backend is waking up (only before
-  // the first result, so manual lever runs are never overridden)
+  useEffect(() => {
+    loadDefault();
+  }, [loadDefault]);
+
+  // auto-retry while the report is still being computed (only before the
+  // first result, so manual lever runs are never overridden)
   useEffect(() => {
     if (waking && !result) {
-      const t = setTimeout(() => run({}), 3000);
+      const t = setTimeout(() => loadDefault(), 3000);
       return () => clearTimeout(t);
     }
-  }, [waking, wakeAttempts, result, run]);
+  }, [waking, wakeAttempts, result, loadDefault]);
 
   const points = useMemo(() => {
     if (!result) return [];
@@ -152,10 +171,10 @@ export default function AdversaryPage() {
   }, [result]);
 
   if (error && !result)
-    return <ErrorState error={`API error: ${error}`} onRetry={() => run({})} />;
+    return <ErrorState error={`API error: ${error}`} onRetry={loadDefault} />;
   if (!result)
     return waking ? (
-      <WakingState onRetry={() => run({})} />
+      <WakingState onRetry={loadDefault} />
     ) : (
       <PageSkel rows={5} />
     );
