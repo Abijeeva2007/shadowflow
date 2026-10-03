@@ -89,6 +89,16 @@ The adversary searches a fixed grid of evasion schemes (about 32 combinations
 over hop delay, splits, timing jitter, decoy accounts and number of banks)
 and reports which ones the detectors catch.
 
+The default report is computed once ahead of time into
+`backend/data/adversary_default.json` (regenerate it with
+`python precompute_adversary.py`) and the page loads that file, so opening
+the Adversary Lab never starts a search. The "Run" button searches live with
+your lever settings, capped at 4 schemes, one run at a time (a second run is
+rejected with a "busy" message) and with a 20 second timeout. On the 0.1-CPU
+free-tier host a live search needs longer than that, so the button reports
+that the search is still running and the result shows up on the next load.
+The benchmark in [BENCHMARK](BENCHMARK.md) still searches the full grid.
+
 **The Friction Score (LFS) is a proxy defined in this project.** It is not an
 industry metric. For a scheme it is
 
