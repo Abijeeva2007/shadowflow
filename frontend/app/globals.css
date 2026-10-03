@@ -84,6 +84,10 @@ input[type="range"] {
 .err-banner {
   @apply border border-risk-red/60 bg-risk-red/10 text-risk-red rounded px-3 py-2 text-xs;
 }
+/* not-an-error notice: work in progress, retrying, degraded backend */
+.info-banner {
+  @apply border border-risk-amber/50 bg-risk-amber/10 text-risk-amber rounded px-3 py-2 text-xs;
+}
 .hairline {
   @apply border-ink-border;
 }

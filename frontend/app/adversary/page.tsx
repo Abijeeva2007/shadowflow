@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   ResponsiveContainer,
   ScatterChart,
@@ -58,6 +58,12 @@ const LEVERS = [
   },
 ];
 
+/** Cheap identity for a report, used to tell "new result" from "same result". */
+function reportSig(r: AdversaryResult | null): string {
+  if (!r) return "";
+  return `${r.n_schemes_tested}:${r.friction_after}:${r.frontier.length}`;
+}
+
 /** Rolling detection rate over cost - the empirical "detection probability". */
 function rollingRate(
   points: { cost: number; detected: boolean }[],
@@ -75,12 +81,52 @@ function rollingRate(
   });
 }
 
+/**
+ * Shown when /api/adversary/frontier 404s, i.e. the API is a build from
+ * before the precomputed report shipped. Explains the redeploy and offers the
+ * one-off search as a manual action.
+ */
+function LegacyBackendPanel({
+  onCompute,
+  busy,
+}: {
+  onCompute: () => void;
+  busy: boolean;
+}) {
+  return (
+    <div className="panel p-8 text-center">
+      <div className="text-sm font-medium text-ink-text">
+        The API is running an older build
+      </div>
+      <div className="text-xxs text-ink-muted mt-1.5 max-w-md mx-auto leading-relaxed">
+        Precomputed adversary reports ship with the current API build. This
+        instance has not been redeployed yet, so the lab has no saved frontier to
+        show. Redeploy the API to fix this permanently, or compute one now
+        &ndash; that searches every scheme on the server and can take a few
+        minutes.
+      </div>
+      <button className="btn-primary mt-5" onClick={onCompute} disabled={busy}>
+        <Play size={13} />
+        {busy ? "Searching all schemes…" : "Compute default report"}
+      </button>
+    </div>
+  );
+}
+
 export default function AdversaryPage() {
   const [result, setResult] = useState<AdversaryResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [waking, setWaking] = useState(false);
   const [wakeAttempts, setWakeAttempts] = useState(0);
   const [busy, setBusy] = useState(false);
+  // the API answered 404 on /frontier: it is a build from before the
+  // precomputed report existed and has to search for one on demand
+  const [legacy, setLegacy] = useState(false);
+  // "still working" notices - background progress, not a failure
+  const [notice, setNotice] = useState<string | null>(null);
+  // remaining background refreshes after a 504
+  const [poll, setPoll] = useState(0);
+  const computingRef = useRef(false);
   const [levers, setLevers] = useState<Record<string, number>>({
     hop_delay_hours: 48,
     n_splits: 2,
@@ -98,8 +144,18 @@ export default function AdversaryPage() {
       });
       setResult(res);
       setWaking(false);
+      setNotice(null);
+      setError(null);
     } catch (e: any) {
-      if (isWakingErr(e)) {
+      if (e?.status === 504) {
+        // the API stopped waiting, but the search keeps running in its worker
+        // thread and publishes the result when it finishes
+        setNotice(
+          "Search still running on the backend - this page refreshes itself when it lands.",
+        );
+        setPoll(45);
+        setError(null);
+      } else if (isWakingErr(e)) {
         // backend still booting: keep retrying until the first result lands
         setWaking(true);
         setError(null);
@@ -120,9 +176,14 @@ export default function AdversaryPage() {
       const res = await api<AdversaryResult>("/api/adversary/frontier");
       setResult(res);
       setWaking(false);
+      setLegacy(false);
       setError(null);
     } catch (e: any) {
-      if (isWakingErr(e)) {
+      if (e?.status === 404) {
+        // Only an older API build 404s here: it predates the precomputed
+        // report, so offer the one-off search rather than failing the page.
+        if (!computingRef.current) setLegacy(true);
+      } else if (isWakingErr(e)) {
         // backend still booting or report still computing: retry until it lands
         setWaking(true);
         setWakeAttempts((a) => a + 1);
@@ -133,9 +194,62 @@ export default function AdversaryPage() {
     }
   }, []);
 
+  // legacy fallback: ask an old build to search once, then poll for the
+  // report it caches. Deliberately not automatic - firing that heavy search
+  // on page open is what used to knock the free-tier instance over.
+  const computeDefault = useCallback(async () => {
+    computingRef.current = true;
+    setBusy(true);
+    setError(null);
+    try {
+      const res = await api<AdversaryResult>("/api/adversary/run", {
+        method: "POST",
+        body: "{}",
+      });
+      setResult(res);
+      setLegacy(false);
+      setNotice(null);
+    } catch (e: any) {
+      if (isWakingErr(e)) {
+        // the request died but the search continues server-side
+        setNotice("Search running on the backend - this page refreshes itself.");
+        setPoll(45);
+      } else {
+        setError(String(e.message ?? e));
+      }
+    } finally {
+      computingRef.current = false;
+      setBusy(false);
+    }
+  }, []);
+
   useEffect(() => {
     loadDefault();
   }, [loadDefault]);
+
+  // after a 504 the report changes under us: keep refreshing until it does
+  useEffect(() => {
+    if (!poll) return;
+    const before = reportSig(result);
+    const t = setTimeout(async () => {
+      let next: AdversaryResult | null = null;
+      try {
+        next = await api<AdversaryResult>("/api/adversary/frontier");
+      } catch {
+        /* still computing - try again */
+      }
+      if (next) {
+        setResult(next);
+        if (reportSig(next) !== before) {
+          setPoll(0);
+          setNotice(null);
+          return;
+        }
+      }
+      setPoll((n) => (n > 1 ? n - 1 : 0));
+    }, 4000);
+    return () => clearTimeout(t);
+  }, [poll, result]);
 
   // auto-retry while the report is still being computed (only before the
   // first result, so manual lever runs are never overridden)
@@ -170,6 +284,8 @@ export default function AdversaryPage() {
       .slice(0, 6);
   }, [result]);
 
+  if (!result && legacy)
+    return <LegacyBackendPanel onCompute={computeDefault} busy={busy} />;
   if (error && !result)
     return <ErrorState error={`API error: ${error}`} onRetry={loadDefault} />;
   if (!result)
@@ -242,6 +358,7 @@ export default function AdversaryPage() {
               {busy ? "Running grid…" : "Run schemes"}
             </button>
 
+            {notice && <div className="info-banner">{notice}</div>}
             {error && <div className="err-banner">{error}</div>}
 
             <div className="border-t border-ink-border pt-3">
