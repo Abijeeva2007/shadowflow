@@ -2,8 +2,8 @@
 
 ShadowFlow finds coordinated money-laundering networks in bank transaction logs. It generates a synthetic dataset of payments across three banks, looks for three laundering patterns, and shows the result as an investigation dashboard.
 
-**Live demo:** `LIVE_DEMO_URL`
-**Backend API:** `BACKEND_URL` (health check: `BACKEND_URL/health`)
+**Live demo:** https://shadowflow-zywt.vercel.app
+**Backend API:** https://shadowflow-api.onrender.com (health check: https://shadowflow-api.onrender.com/health)
 
 Everything in this repo runs on generated data. It is a demonstration of the method, not a tool for real investigations.
 
@@ -119,7 +119,7 @@ shadowflow/
 
 ## Team
 
-Built by: `TEAM_LINE`
+Built by: ABI J ,BHARATHY A R ,SIVA PADMESH C B
 
 ## License
 
