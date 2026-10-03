@@ -1,7 +1,9 @@
 # ShadowFlow - hackathon demo Makefile (macOS/Linux).
 # Windows: see scripts\setup_windows.bat and scripts\run_windows.ps1
 
-PY       ?= python3
+# Prefer an interpreter that satisfies the pinned deps (3.11), fall back to
+# python3. Override with:  make setup PY=/path/to/python3.11
+PY       ?= $(shell command -v python3.11 || command -v python3.12 || command -v python3.10 || command -v python3)
 BACKEND  := backend
 FRONTEND := frontend
 # VPY is relative to backend/ (always used after 'cd backend &&')
@@ -24,6 +26,7 @@ help:
 
 setup:
 	@echo "==> creating backend venv and installing backend deps"
+	@$(PY) -c 'import sys; ok = sys.version_info >= (3, 10); print("using python", sys.version.split()[0]) if ok else sys.exit(f"Python 3.10+ required (found {sys.version.split()[0]}); rerun with PY=/path/to/python3.11")'
 	cd $(BACKEND) && $(PY) -m venv .venv
 	$(BACKEND)/.venv/bin/pip install --upgrade pip
 	$(BACKEND)/.venv/bin/pip install -r $(BACKEND)/requirements-dev.txt
