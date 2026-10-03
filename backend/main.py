@@ -34,21 +34,31 @@ DOSSIER_CHAINS: dict[str, list[dict]] = {}  # ring_id -> hash chain at export ti
 
 
 def _allowed_origins() -> list[str]:
-    """CORS allow-list from ALLOWED_ORIGINS (comma-separated).
+    """CORS allow-list: built-in local dev origins + the deployed dashboard,
+    plus anything extra in ALLOWED_ORIGINS (comma-separated).
 
-    Defaults to the local dashboard origins (3000 and 3001, on both localhost
-    and 127.0.0.1) so a dev server on either port can talk to the API. Set
-    ALLOWED_ORIGINS to your deployed dashboard domain(s) in production - e.g.
-    "https://your-app.vercel.app" - or "*" to allow any origin.
+    The production dashboard origin is built in so the deployed site works
+    with zero configuration. ALLOWED_ORIGINS only ever *adds* origins (a
+    partial list can no longer lock the dashboard out); set it to "" or "*"
+    to allow any origin. Trailing slashes are ignored, so pasting an origin
+    from the browser address bar still matches.
     """
-    default = (
-        "http://localhost:3000,http://localhost:3001,"
-        "http://127.0.0.1:3000,http://127.0.0.1:3001"
-    )
-    raw = os.getenv("ALLOWED_ORIGINS", default).strip()
-    if raw in ("", "*"):
+    built_in = [
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:3001",
+        "https://shadowflow-zywt.vercel.app",  # deployed dashboard
+    ]
+    extra = os.getenv("ALLOWED_ORIGINS")
+    if extra is not None and extra.strip() in ("", "*"):
         return ["*"]
-    return [o.strip() for o in raw.split(",") if o.strip()]
+    origins = list(built_in)
+    for o in (extra or "").split(","):
+        o = o.strip().rstrip("/")
+        if o and o not in origins:
+            origins.append(o)
+    return origins
 
 
 def _ensure_data() -> None:
@@ -145,6 +155,18 @@ def _get_ring(ring_id: str) -> dict:
 
 
 # -------------------------------------------------------------------- endpoints
+@app.get("/")
+def root() -> dict:
+    """Service card for a bare visit to the API root."""
+    return {
+        "service": "shadowflow-api",
+        "status": "ok",
+        "health": "/health",
+        "docs": "/docs",
+        "note": "ShadowFlow forensic demo - synthetic data only.",
+    }
+
+
 @app.get("/health")
 def healthcheck() -> dict:
     """Fast readiness probe for Render / uptime checks.
