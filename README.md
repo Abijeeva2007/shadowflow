@@ -46,7 +46,7 @@ Then open http://localhost:3000. The backend takes about 2 seconds to finish det
 
 ## Results
 
-These are the numbers from the seed-42 run, measured against the ground truth the generator injects. They are reproducible: `make data` regenerates the same dataset every time.
+The table below is **one run (seed 42)**, measured against the ground truth the generator injects. They are reproducible: `make data` regenerates the same dataset every time.
 
 **All results below are on synthetic data.** The generator creates the patterns and the detector was written for those same three pattern families, so these numbers describe this pipeline working as designed. They are not an accuracy claim about real transaction data.
 
@@ -69,6 +69,18 @@ These are the numbers from the seed-42 run, measured against the ground truth th
 Two things worth being honest about in that table. The smurfing detector scores a perfect 1.00 because smurfing has a very clear signature once the benign filter has removed normal business. And two of the seven look-alike accounts are still flagged: those two repeat payments on a seasonal loop, which is genuinely the same shape as a laundering cycle, so we could not separate them without real ground truth.
 
 The cheapest way to beat the detector was to move the money in one hop after a 6 hour wait, with no splits, no decoys and one bank. After tightening the thresholds that rose to 8.93x the cost of a normal transfer.
+
+## Results across seeds
+
+The seed-42 table above is a single run. The benchmark in [docs/BENCHMARK.md](docs/BENCHMARK.md) regenerates the data for **10 different seeds at 3 benign-noise levels (30 pipeline runs)** with no threshold changes, and reports mean +/- sample standard deviation:
+
+| Pattern | F1 low noise | F1 medium | F1 high |
+|---|---|---|---|
+| Cycle | 0.63 +/- 0.17 | 0.71 +/- 0.13 | 0.67 +/- 0.17 |
+| Mule chain | 0.95 +/- 0.07 | 0.91 +/- 0.08 | 0.93 +/- 0.07 |
+| Smurfing | 1.00 +/- 0.00 | 1.00 +/- 0.00 | 1.00 +/- 0.00 |
+
+Across those 30 runs the pipeline found 12.7-13.2 of the 15 injected rings on average, flagged 2 of the 7 benign look-alikes every single run, and the cheapest evader's cost rose from 2.98x to 8.93x after hardening (10 adversary runs). The same page has the ablations: full pipeline vs. without the benign filter, with vs. without the Isolation Forest score, and adversary before vs. after hardening. Raw numbers: [docs/benchmark.json](docs/benchmark.json). Regenerate with `make benchmark` (about 2-3 minutes).
 
 ## Project layout
 
