@@ -1,5 +1,7 @@
 # ShadowFlow
 
+[![CI](https://github.com/Abijeeva2007/shadowflow/actions/workflows/ci.yml/badge.svg)](https://github.com/Abijeeva2007/shadowflow/actions/workflows/ci.yml)
+
 ShadowFlow finds coordinated money-laundering networks in bank transaction logs. It generates a synthetic dataset of payments across three banks, looks for three laundering patterns, and shows the result as an investigation dashboard.
 
 **Live demo:** https://shadowflow-zywt.vercel.app
