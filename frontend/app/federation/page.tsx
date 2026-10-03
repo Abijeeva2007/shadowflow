@@ -155,22 +155,28 @@ export default function FederationPage() {
               {signals.slice(0, 60).map((s, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-2 text-xxs border border-ink-border rounded px-2 h-7"
+                  className="flex items-center gap-2 text-xxs border border-ink-border rounded px-2 h-7 overflow-hidden"
                 >
                   <span
                     className="w-2 h-2 rounded-sm shrink-0"
                     style={{ background: bankColor(s.bank) }}
                   />
-                  <span className="num text-ink-muted">{s.hashed_id}</span>
+                  <span className="num text-ink-muted shrink min-w-0 truncate">
+                    {s.hashed_id}
+                  </span>
                   <span
-                    className="badge"
+                    className="badge shrink-0 whitespace-nowrap"
                     style={{ color: typeColor(s.pattern_type) }}
                   >
                     {typeLabel(s.pattern_type)}
                   </span>
-                  <span className="text-ink-faint">{s.direction}</span>
-                  <span className="text-ink-faint">{s.amount_bucket}</span>
-                  <span className="ml-auto text-ink-faint num">
+                  <span className="text-ink-faint shrink-0 whitespace-nowrap">
+                    {s.direction}
+                  </span>
+                  <span className="text-ink-faint shrink-0 whitespace-nowrap">
+                    {s.amount_bucket}
+                  </span>
+                  <span className="ml-auto shrink-0 text-ink-faint num whitespace-nowrap">
                     {fmtTime(s.window[0])}
                   </span>
                 </div>
