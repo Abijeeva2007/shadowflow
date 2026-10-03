@@ -55,7 +55,8 @@ These are the numbers from the seed-42 run, measured against the ground truth th
 | Dataset | 70,021 payments, 1,635 accounts, 3 banks, 90 days |
 | Accounts cleared as normal business | 1,185 of 1,635 |
 | Accounts sent to the detectors | 450 |
-| Injected rings found | 13 of 15 |
+| Injected rings found | 12 of 15 |
+| Rings flagged | 13 (12 injected + 1 look-alike ring) |
 | Cycle precision / recall / F1 | 0.75 / 0.60 / 0.67 |
 | Mule chain precision / recall / F1 | 1.00 / 0.80 / 0.89 |
 | Smurfing precision / recall / F1 | 1.00 / 1.00 / 1.00 |
@@ -65,7 +66,7 @@ These are the numbers from the seed-42 run, measured against the ground truth th
 | Evasion cost before hardening | 2.98x the naive transfer |
 | Evasion cost after hardening | 8.93x |
 
-Two things worth being honest about in that table. The smurfing detector scores a perfect 1.00 because smurfing has a very clear signature once the benign filter has removed normal business. And two of the seven look-alike accounts are still flagged: those two repeat payments on a seasonal loop, which is genuinely the same shape as a laundering cycle, so we could not separate them without real ground truth. The two missing rings are also mostly detectors being strict, not the data being broken.
+Two things worth being honest about in that table. The smurfing detector scores a perfect 1.00 because smurfing has a very clear signature once the benign filter has removed normal business. And two of the seven look-alike accounts are still flagged: those two repeat payments on a seasonal loop, which is genuinely the same shape as a laundering cycle, so we could not separate them without real ground truth.
 
 The cheapest way to beat the detector was to move the money in one hop after a 6 hour wait, with no splits, no decoys and one bank. After tightening the thresholds that rose to 8.93x the cost of a normal transfer.
 
@@ -104,7 +105,7 @@ shadowflow/
 
 - **The data is synthetic and the detector knows the shapes.** Patterns are injected by the generator and the detectors were built for those three families. On real data these F1 scores would drop, and the hand-set thresholds in `engine/config.py` would need to be tuned against real cases.
 - **Cross-bank sharing is simulated.** The three banks run in one process, the hash salt is a shared secret in the environment, and revealing an account is a mock authorisation step rather than a real access control. Salted hashes over a small id space are also not a strong privacy guarantee.
-- **Two injected rings are missed** and two benign accounts are still flagged. Both are visible in the numbers above.
+- **Three injected rings are missed** and two benign accounts are still flagged. Both are visible in the numbers above.
 - **Nothing is stored.** Detection runs at startup and stays in memory. There is no database, no login and no record of past cases.
 - **The adversary is a threshold search, not a real attacker.** It only tries the levers we implemented.
 - **Detection assumes transaction data is complete.** It works on the log it is given; it cannot see accounts a bank never reports.
