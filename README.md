@@ -108,10 +108,18 @@ shadowflow/
 │   ├── components/           flow-of-funds graph, step chart, retry gate
 │   ├── lib/api.ts            all API calls in one place
 │   └── src/                  colours and shared UI pieces
-├── docs/                     screenshots
+├── docs/                     screenshots, benchmark, methodology, data card, sample dossier
 ├── render.yaml               deployment config for the backend
 └── scripts/                  demo script and Windows helpers
 ```
+
+## Docs
+
+- [docs/METHODOLOGY.md](docs/METHODOLOGY.md) - how each detector works, what the Friction Score is (a proxy defined here), the taint assumption, and what federation does and does not protect.
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) - one data-flow diagram from the generator to the dashboard.
+- [docs/DATA_CARD.md](docs/DATA_CARD.md) - what the synthetic data contains and what it does not model.
+- [docs/BENCHMARK.md](docs/BENCHMARK.md) and [docs/benchmark.json](docs/benchmark.json) - 10 seeds x 3 noise levels with ablations.
+- [docs/sample-dossier.pdf](docs/sample-dossier.pdf) - one exported case file (CYCLE-01). To verify it, run `curl https://shadowflow-api.onrender.com/api/verify/CYCLE-01`: it recomputes the evidence hash chain from the committed seed-42 data and returns `chain_valid: true` with `current_final_hash` equal to the integrity hash printed in the PDF footer.
 
 ## Limitations
 
